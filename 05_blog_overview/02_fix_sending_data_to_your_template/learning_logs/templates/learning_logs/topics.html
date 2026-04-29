@@ -1,16 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Learning Log</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <a href="{% url 'learning_logs:index' %}">Learning Logs</a>
-        <a href="{% url 'learning_logs:topics' %}">All Topics</a>
+      <a href="{% url 'learning_logs:index' %}">Learning Logs</a>
+      <a href="{% url 'learning_logs:topics' %}">All Topics</a>
     </nav>
 
     <h1>Topics</h1>
 
-</body>
+    <ul>
+      {% for topic in topics %}
+      <li>
+        <a href="{% url 'learning_logs:topic' topic.pk %}">{{ topic }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>

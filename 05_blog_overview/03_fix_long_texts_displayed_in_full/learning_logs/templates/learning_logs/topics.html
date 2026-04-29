@@ -1,24 +1,26 @@
-{% extends "learning_logs/base.html" %}
+{% extends "learning_logs/base.html" %} {% block content %}
 
-{% block content %}
-    
-    <h1>Topics</h1>
+<h1>Topics</h1>
 
-    <ul>
-    {% for topic in topics %}
-        <li>{{ topic }}</li>
+<ul>
+  {% for topic in topics %}
+  <li>{{ topic }}</li>
 
-        <ul>
-            {% for entry in topic.entry_set.all %}
-                <li><a href="{% url 'learning_logs:entry' entry.id %}">{{ entry.text }}</a></li>
-            {% empty %}
-                <li>No logs for this topic.</li>
-            {% endfor %}
-        </ul>
-
+  <ul>
+    {% for entry in topic.entry_set.all %}
+    <li>
+      <a href="{% url 'learning_logs:entry' entry.id %}"
+        >{{ entry.text|truncatechars:50 }}</a
+      >
+    </li>
     {% empty %}
-        <li>No topics added yet</li>
+    <li>No logs for this topic.</li>
     {% endfor %}
-    </ul>
+  </ul>
+
+  {% empty %}
+  <li>No topics added yet</li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
