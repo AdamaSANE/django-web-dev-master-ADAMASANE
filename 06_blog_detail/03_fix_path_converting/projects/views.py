@@ -7,6 +7,7 @@ def index(request):
     return render(request, 'projects/index.html', {'projects': projects})
 
 
-def detail(request, pk):
-    project = Project.objects.get(pk=pk)
+def detail(request, slug):
+    # Récupère le projet via son slug pour une URL SEO-friendly
+    project = Project.objects.get(slug=slug)
     return render(request, 'projects/detail.html', {'project': project})
